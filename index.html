@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Discover films, explore genres, and watch official trailers on Kelly Films.">
+  <meta name="theme-color" content="#090b12">
+  <title>KELLY FILMS — Discover your next movie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Kelly Films home"><span class="brand-mark">K</span><span>KELLY <b>FILMS</b></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#browse" class="nav-link">Movies</a>
+      <a href="#genres" class="nav-link">Genres</a>
+    </nav>
+    <div class="header-actions">
+      <label class="searchbox"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search films..." aria-label="Search films"></label>
+      <button class="admin-open" id="openAdminBtn">Admin <span>↗</span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR MOVIE DESTINATION</div>
+        <p class="hero-kicker">STORIES THAT STAY WITH YOU</p>
+        <h1>Find your next<br><span>favorite film.</span></h1>
+        <p class="hero-copy">Explore films, discover new stories, and find your next movie night pick.</p>
+        <div class="hero-buttons">
+          <a class="primary-btn" href="#browse">Explore films <span>→</span></a>
+          <button class="secondary-btn" id="heroAdminBtn">＋ Add a film</button>
+        </div>
+        <div class="hero-foot"><span>CURATED FOR MOVIE LOVERS</span><span class="hero-line"></span><span id="heroCount">00 FILMS</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="poster-stack"><div class="stack-poster poster-a">K<span>F</span></div><div class="stack-poster poster-b">STORIES<br>BEGIN HERE</div><div class="stack-poster poster-c">PLAY<br>YOUR<br>WORLD</div></div></div>
+    </section>
+
+    <section class="quick-stats" aria-label="Website highlights">
+      <div><span class="stat-icon">▣</span><span><strong id="statFilms">0</strong><small>Films listed</small></span></div>
+      <div><span class="stat-icon">✦</span><span><strong>Fresh picks</strong><small>Discover something new</small></span></div>
+      <div><span class="stat-icon">▶</span><span><strong>Watch trailers</strong><small>Open official video links</small></span></div>
+    </section>
+
+    <section class="catalog-section" id="browse">
+      <div class="section-heading">
+        <div><p class="section-kicker">THE COLLECTION</p><h2>Explore <span>films.</span></h2></div>
+        <p class="section-description">A growing collection for every mood.</p>
+      </div>
+      <div class="filters" id="genres">
+        <button class="filter-chip selected" data-genre="All">All films</button>
+        <button class="filter-chip" data-genre="Action">Action</button>
+        <button class="filter-chip" data-genre="Comedy">Comedy</button>
+        <button class="filter-chip" data-genre="Drama">Drama</button>
+        <button class="filter-chip" data-genre="Horror">Horror</button>
+        <button class="filter-chip" data-genre="Romance">Romance</button>
+        <button class="filter-chip" data-genre="Animation">Animation</button>
+      </div>
+      <div class="result-line"><span id="resultsLabel">FEATURED COLLECTION</span><span id="resultCount">0 films</span></div>
+      <div class="film-grid" id="filmGrid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="emptyState"><div class="empty-icon">⌕</div><h3>No films found</h3><p>Try another title or choose a different genre.</p><button class="secondary-btn" id="clearSearchBtn">Clear search</button></div>
+    </section>
+
+    <section class="join-banner">
+      <div><p class="section-kicker">YOUR NEXT MOVIE NIGHT</p><h2>Every story starts <span>somewhere.</span></h2><p>Keep exploring the Kelly Films collection.</p></div>
+      <a class="primary-btn" href="#browse">Browse collection <span>→</span></a>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand footer-brand" href="#"><span class="brand-mark">K</span><span>KELLY <b>FILMS</b></span></a><p>Discover stories. Find your next favorite.</p><span>© <span id="year"></span> Kelly Films</span></footer>
+
+  <div class="modal hidden" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="modal-backdrop" data-close="admin"></div>
+    <div class="modal-panel admin-panel">
+      <button class="modal-close" data-close="admin" aria-label="Close">×</button>
+      <p class="section-kicker">CONTENT MANAGEMENT</p><h2 id="adminTitle">Kelly Films <span>Admin</span></h2>
+      <p class="modal-intro">Add a film to this demo collection. Fields marked * are required.</p>
+      <div class="demo-notice"><strong>Demo mode:</strong> films are saved in this browser only. See README to make uploads available to everyone on your live website.</div>
+      <form id="filmForm">
+        <label>Film title *<input id="filmTitle" required maxlength="100" placeholder="e.g. The Great Adventure"></label>
+        <div class="form-row">
+          <label>Genre *<select id="filmGenre" required><option value="Action">Action</option><option value="Comedy">Comedy</option><option value="Drama">Drama</option><option value="Horror">Horror</option><option value="Romance">Romance</option><option value="Animation">Animation</option><option value="Documentary">Documentary</option><option value="Other">Other</option></select></label>
+          <label>Release year<input id="filmYear" type="number" min="1888" max="2100" placeholder="2026"></label>
+        </div>
+        <label>Description<textarea id="filmDescription" rows="3" maxlength="600" placeholder="What is this film about?"></textarea></label>
+        <label>Poster image<input id="filmPoster" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <p class="field-help">Use a small JPG/PNG/WebP poster (under 1 MB recommended). It is stored in this browser in demo mode.</p>
+        <label>Official trailer or authorized video URL<input id="filmVideo" type="url" placeholder="https://www.youtube.com/watch?v=..."></label>
+        <div class="form-actions"><button type="button" class="secondary-btn" data-close="admin">Cancel</button><button class="primary-btn" type="submit">Save film <span>＋</span></button></div>
+      </form>
+      <div class="admin-manage"><div><strong>Manage demo films</strong><span id="adminFilmCount">0 films</span></div><div id="adminFilmList" class="admin-film-list"></div><button class="text-danger" id="resetDemoBtn" type="button">Reset to sample films</button></div>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal-backdrop" data-close="detail"></div>
+    <div class="modal-panel detail-panel">
+      <button class="modal-close" data-close="detail" aria-label="Close">×</button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+  <div class="toast hidden" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
